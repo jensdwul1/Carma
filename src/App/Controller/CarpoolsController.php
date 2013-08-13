@@ -6,6 +6,7 @@ use Ahs\ControllerAbstract;
 use App\Model\UserMapper;
 use App\Model\CarpoolMapper;
 use App\Model\PassengerMapper;
+use App\Model\CampusMapper;
 
 
 class CarpoolsController extends ControllerAbstract
@@ -116,7 +117,6 @@ class CarpoolsController extends ControllerAbstract
 	public function newcarpoolAction()
 	{
 		$view = $this->getView();
-		
 		try{
 			// USER CHECK
 			$view->hasIdentity = $this->session->has('user');
@@ -130,7 +130,8 @@ class CarpoolsController extends ControllerAbstract
 		catch (\Exception $ex) {
 				$ex->getMessage();
 		}
-		
+		$campusMapper = new CampusMapper();
+		$view->campuses = $campusMapper->readAll();
 		// ANDERS
 		if (isset($_POST) && isset($_POST['btnNewCarpool'])) {
 			$carpool = new Carpool($_POST);
@@ -150,8 +151,6 @@ class CarpoolsController extends ControllerAbstract
 				return $this->redirect(PATH_WEBROOT . '/user');
 			}
 		}
-		$campusMapper = new CampusMapper();
-		$view->campuses = $campusMapper->readAll();
 		return $view;
 	}
 
