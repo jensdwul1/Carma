@@ -33,7 +33,7 @@ class UserController extends ControllerAbstract
 			$view->carpools = $carpoolMapper->readForUser($user);
 		} else {
 			// Zo niet, omleiden naar de login-pagina
-			return $this->redirect('/user/login');
+			return $this->redirect(PATH_WEBROOT . '/user/login');
 		}
 	}
 
