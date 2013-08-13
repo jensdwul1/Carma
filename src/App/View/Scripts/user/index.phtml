@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<?php $this->partial('head'); ?>
+  <body>
+		<div id="complete_wrapper">
+			<header id="header-wrap" class="row">
+				<a href="<?= $this->path('index') ?>"><img src="<?= $this->path('docs/images/logo-header.png'); ?>" alt="logo Carma" /></a>
+				<p class="header-login">
+					<?php if ($this->hasIdentity) { ?>
+						<a href="<?= $this->path('user') ?>" title="Go to your profile">Hi there, <?= $this->user->getGivenname() ?>!</a>
+					<?php } else { ?>
+						<a href="<?= $this->path('user') ?>" title="Log in">Log in</a>
+					<?php } ?>
+				</p>
+                	<ul id="mobile_nav">
+				<li><a href="#"></a></li>
+			</ul>
+			<nav id="global_nav" class="row">
+				<ul>
+					<li><a href="<?= $this->path('index') ?>">Carpools</a></li>
+					<li><a href="<?= $this->path('campuses') ?>">Campuses</a></li>
+					<li class="nav-active"><a href="<?= $this->path('user') ?>">User</a></li>
+				</ul>
+			</nav>
+			</header>
+		
+			<div id="info-box">
+				<h1>Hello there, <?= $this->user->getGivenname() ?>.</h1>
+				<p>You have reached your profile page. </p>
+			</div>
+			<div id="page_wrap" class="container row">
+				<section id="content_wrap" class="row">
+					<article class="col span_5 clr" id="profile">
+						<h2>Your personal details</h2>
+						<img class="user_avatar_profile" src="<?= $this->user->getPic() ?>" />
+						<p>First name: <?= $this->user->getGivenname() ?></p>
+						<p>Family name: <?= $this->user->getFamilyname() ?></p>
+						<p>Email: <?= $this->user->getEmail() ?></p>
+						<p>Member since:
+							<time class="timeago" datetime="<?= date('c', strtotime($this->user->getCreateddate())); ?>">
+								<?= $this->user->getCreateddate() ?></time>
+						</p>
+						<br/>
+						<form id="frmEditUser" method="post" action="<?= $this->path('user/edituser') ?>">
+							<input name="btnEditUser" id="btnEditUser" type="submit" value="Edit your information">
+							<input type="hidden" name="usr_id" value="<?= $this->user->getId() ?>">
+						</form>
+						<br/>
+                        <a class="button-like" href="<?= $this->path('user/logout') ?>">Log out</a>
+					</article>
+                        <article class="col span_4 clr" id="profile">
+                   <h1>Your Carpools</h1>
+                   
+					<?php if (empty($this->carpools)) { ?>
+						<p>You haven't made any carpools!</p>
+					<?php } else {
+						?>
+						<table border='1'>
+							<thead>
+							<th>Title</th>
+							<th>Departure</th>
+							<th>Campus</th>
+							<th>Seats</th>
+							<th></th>
+							</thead>
+							<?php foreach ($this->carpools as $carpool) {
+								?>
+								<tr>
+									<td>
+										<a href="<?= $this->path('carpools/carpool/id/' . $carpool->getId()) ?>"><?= $carpool->getTitle() ?></a>
+									</td>
+									<td><?= $carpool->getDeparture(); ?></td>
+									<td><a href="<?= $this->path('campuses/campus/id/' . $carpool->getCampus()->getId()) ?>"><?= $carpool->getCampus()->getName(); ?></a></td><td><?= $carpool->getSeats(); ?></td>
+									<td>
+										<form id="frmEditCarpool" method="post" action="<?= $this->path('user/editcarpool') ?>">
+											<input type="hidden" name="carp_id" value="<?= $carpool->getId() ?>">
+											<input name="btnEditCarpool" id="btnEditCarpool" type="submit" value="Edit">
+										</form>
+									</td>
+								</tr>
+							<?php }
+							?>
+						</table>
+					<?php }
+					?>
+					<p><a href="<?= $this->path('user/newcarpool') ?>">Add a new carpool</a></p>
+                     </article>
+						
+					</section><!-- content_wrap -->
+			</div><!-- page_wrap -->
+			<div class="push"></div>
+		</div>
+		<?php $this->partial('footer'); ?>
+  </body>
+</html>

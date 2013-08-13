@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<?php $this->partial('head'); ?>
+  <body>
+		<div id="complete_wrapper">
+			<header id="header-wrap" class="row">
+				<a href="<?= $this->path('index') ?>"><img src="<?= $this->path('docs/images/logo-header.png'); ?>" alt="logo Carma" /></a>
+				<p class="header-login">
+					<a href="<?= $this->path('user') ?>" title="Log in">Log in</a>
+				</p>
+                <ul id="mobile_nav">
+				<li><a href="#"></a></li>
+			</ul>
+			<nav id="global_nav" class="row">
+				<ul>
+				<li><a href="<?= $this->path('index') ?>">Carpools</a></li>
+				<li><a href="<?= $this->path('campuses') ?>">Campuses</a></li>
+				<li><a href="<?= $this->path('companies') ?>">Transit</a></li>
+					<li class="nav-active"><a href="<?= $this->path('user') ?>">User</a></li>
+				</ul>
+			</nav>
+			</header>
+			
+			<div id="info-box">
+				<h1>Log In</h1>
+				<p>Please enter your credentials (your email address and your password) to continue. If you haven't registered yet, you can always sign up to carma, for free.</p>
+				<p>
+				<?php 
+				if (isset($_SESSION["Error"]))
+				{
+					echo $_SESSION["Error"]; 
+				} 
+				?>
+				</p>
+			</div>
+			<div id="page_wrap" class="container row">
+				<section id="content_wrap" class="row">
+					<article class="col span_8 clr">
+						<form id="frmLogin" method="post" action="">
+							<label for="email">Email:</label>
+							<input id="email" name="email" type="email" required title="Vul een geldig emailadres in" value="<?= @$_POST['email'] ?>"><br/>
+							<label for="password">Password:</label>
+							<input id="password" required name="password" type="password"><br/>
+							<br/>
+							<input id="btnLogin" name="btnLogin" type="submit" value="Log In">
+						</form>
+						<br/>
+						<a href="<?= $this->path('user/register') ?>">No account yet? Register now!</a>
+						<br/>
+						
+					</article>
+				</section><!-- content_wrap -->
+			</div><!-- page_wrap -->
+			<div class="push"></div>
+		</div>
+		<?php $this->partial('footer'); ?>
+  </body>
+</html>

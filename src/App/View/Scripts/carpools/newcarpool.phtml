@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<?php $this->partial('head'); ?>
+	<body>
+		<div id="complete_wrapper">
+		<header id="header-wrap" class="row">
+			<a href="<?= $this->path('index') ?>"><img src="<?= $this->path('docs/images/logo-header.png'); ?>" alt="logo Carma" /></a>
+			<p class="header-login">
+				<?php if ($this->hasIdentity) { ?>
+					<a href="<?= $this->path('user') ?>" title="Go to your profile">Hi there, <?= $this->user->getGivenname() ?>!</a>
+				<?php } else { ?>
+					<a href="<?= $this->path('user') ?>" title="Log in">Log in</a>
+				<?php } ?>
+			</p>
+            <ul id="mobile_nav">
+			<li><a href="#"></a></li>
+		</ul>
+		<nav id="global_nav" class="row">
+			<ul>
+				<li class="nav-active"><a href="<?= $this->path('index') ?>">Carpools</a></li>
+				<li><a href="<?= $this->path('campuses') ?>">Campuses</a></li>
+				<li><a href="<?= $this->path('user') ?>">User</a></li>
+			</ul>
+		</nav>
+		</header>
+		<div id="info-box">
+			<p>Add your carpool</p>
+		</div>
+		<div id="page_wrap" class="container row">
+		<section id="content_wrap" class="row">
+			<article class="col span_8 clr">
+		<form id="frmNewCarpool" method="post" action="">
+			<label for="title">Title:</label>
+			<input id="title" name="title" type="text" required value="<?= @$_POST['title'] ?>">
+
+			<label for="description">Description:</label>
+			<textarea id="description" name="description" required><?= @$_POST['description']?></textarea>
+
+			<label for="departure">Departure Name:</label>
+			<textarea id id="departure" name="departure" required ><?= @$_POST['departure'] ?></textarea>
+
+			<label for="lat">Departure Latitude:</label>
+			<input id="lat" name="lat" type="text" required value="<?= @$_POST['lat'] ?>">
+
+			<label for="lng">Departure Longitude:</label>
+			<input id="lng" name="lng" type="text" required value="<?= @$_POST['lng'] ?>">
+            
+			<label for="seats">Seats:</label>
+			<input id="seats" name="seats" type="number" required value="<?= @$_POST['seats'] ?>">
+
+			<label for="campus">Campus:</label>
+			<select id="campus" name="campus">
+				<?php foreach ($this->campuses as $campus) { ?>
+					<option value="<?= $campus->getId(); ?>"><?= $campus->getName(); ?></option>
+				<?php } ?>
+			</select>
+			
+            <label for="user">User:</label>
+			<label id="user" name="user"><?= $this->user->getGivenname() ?> <?= $this->user->getFamilyname() ?></label>
+            
+			<input id="btnNewCarpool" name="btnNewCarpool" type="submit" value="Add carpool">
+		</form>
+		</article>
+		</section><!-- content_wrap -->
+		<footer class="row">
+		<?php $this->partial('footer'); ?>
+		</footer>
+		</div><!-- page_wrap -->	
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<?php $this->partial('head'); ?>
+  <body>
+		<div id="complete_wrapper">
+			<header id="header-wrap" class="row">
+				<a href="<?= $this->path('index') ?>"><img src="<?= $this->path('docs/images/logo-header.png'); ?>" alt="logo Carma" /></a>
+				<p class="header-login">
+					<a href="<?= $this->path('user') ?>" title="Log in">Log in</a>
+				</p>
+                <ul id="mobile_nav">
+				<li><a href="#"></a></li>
+			</ul>
+			<nav id="global_nav" class="row">
+				<ul>
+					<li><a href="<?= $this->path('index') ?>">Home</a></li>
+					<li><a href="<?= $this->path('carpools') ?>">Carpools</a></li>
+					<li><a href="<?= $this->path('campuses') ?>">Campuses</a></li>
+					<li class="nav-active"><a href="<?= $this->path('user') ?>">User</a></li>
+				</ul>
+			</nav>
+			</header>
+			
+			<div id="info-box">
+				<h1>Register Now</h1>
+				<p>When you register as a user, you can use all the advantages that carma offers: you appear on leaderboards, you can check in to local shops and businesses, and make use of the latest vendor offers and dailies. Signing up doesn't take long and is FREE.</p>
+				<p>
+				<?php 
+				if (isset($_SESSION["Error"]))
+				{
+					echo "<br />" . $_SESSION["Error"]; 
+				} 
+				?>
+				</p>
+			</div>
+			<div id="page_wrap" class="container row">
+				<section id="content_wrap" class="row">
+					<article class="col span_8 clr">
+						<form id="frmRegister" method="post" action="">
+							<label for="givenname">First Name:</label>
+							<input id="givenname" name="givenname" type="text" required title="Vul een geldige voornaam in" value="<?= @$_POST['givenname'] ?>"><br/>
+							<label for="familyname">Family Name:</label>
+							<input id="familyname" name="familyname" type="text" required title="Vul een geldige familienaam in" value="<?= @$_POST['familyname'] ?>"><br/>
+							<label for="email">Email Address:</label>
+							<input id="email" name="email" type="email" required title="Vul een geldig emailadres in" value="<?= @$_POST['email'] ?>"><br/>
+							<label for="pic">Profile Picture (URL):</label>
+							<input id="pic" name="pic" type="text" required title="Vul een geldige URL in" value="<?= @$_POST['pic'] ?>"><br/>
+
+							<label for="password">Password:</label>
+							<input id="password" name="password" type="password" required><br/>
+							
+							<input id="btnRegister" name="btnRegister" type="submit" value="Register"><br/>
+						</form>
+					</article>
+				</section><!-- content_wrap -->
+			</div><!-- page_wrap -->
+			<div class="push"></div>
+		</div>
+		<?php $this->partial('footer'); ?>
+  </body>
+</html>

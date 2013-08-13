@@ -1,0 +1,632 @@
+/*********************
+	   Temporary
+*********************/
+#mapTest{
+	height: 300px;
+	width: 300px;
+}
+
+/*********************
+	   General
+*********************/
+
+html{
+		background: url('../docs/images/backpattern.png');
+		height: 100%;
+		font-family: "Source Sans Pro", "Helvetica Neue", "Arial", sans-serif;
+}
+
+body{
+	width: 100%;
+	height: 100%;
+/*	background: -moz-linear-gradient(-45deg,  rgba(255,255,255,0) 0%, rgba(255,254,253,0) 1%, rgba(245,174,76,0.2) 100%);  FF3.6+ 
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(1%,rgba(255,254,253,0)), color-stop(100%,rgba(245,174,76,0.2)));  Chrome,Safari4+ 
+	background: -webkit-linear-gradient(-45deg,  rgba(255,255,255,0) 0%,rgba(255,254,253,0) 1%,rgba(245,174,76,0.2) 100%);  Chrome10+,Safari5.1+ 
+	background: -o-linear-gradient(-45deg,  rgba(255,255,255,0) 0%,rgba(255,254,253,0) 1%,rgba(245,174,76,0.2) 100%);  Opera 11.10+ 
+	background: -ms-linear-gradient(-45deg,  rgba(255,255,255,0) 0%,rgba(255,254,253,0) 1%,rgba(245,174,76,0.2) 100%);  IE10+ 
+	background: linear-gradient(135deg,  rgba(255,255,255,0) 0%,rgba(255,254,253,0) 1%,rgba(245,174,76,0.2) 100%);  W3C 
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#33f5ae4c',GradientType=1 );  IE6-9 fallback on horizontal gradient */
+	width: 100%;
+}
+
+p{
+	font-size: 1em;
+}
+
+a{
+	color: #EB6B20;
+}
+
+a:hover{
+	color: #FFF;
+}
+
+a:visited{
+	color: #EB6B20;
+}
+
+
+
+/*********************
+			 Header
+*********************/
+
+#header-wrap{
+	background: black;
+	padding: 6px 4% 0px 4%;
+	margin-bottom: 0;
+}
+
+#header-wrap img{
+	float: left;
+	width:150px;
+}
+
+#header-wrap .header-login a{
+	color: #EB6B20;
+	text-decoration: underline;
+	float: right;
+	margin-top: 0px;
+}
+#header-wrap .header-login a:hover{
+	color: #FFF;
+}
+/*********************
+	   Navigation
+*********************/
+
+
+
+#mobile_nav li a:hover{
+	background-color: #444 !important;
+}
+
+#global_nav{
+	background: black;
+	height: 37px;
+	margin-bottom: 0;
+}
+
+#global_nav ul{
+	margin-left: 150px;
+	position: relative;
+	
+}
+
+#global_nav ul li a{
+	color: white;
+	text-decoration: none;
+	padding: 15px 15px 19px 15px;
+}
+
+#global_nav ul li{
+	float: left;
+	padding: 0px;
+	list-style: none;
+}
+
+#global_nav ul li a:hover{
+	background-color: #EB6B20;
+	-webkit-transition: all 0.1s ease-in-out;
+	-moz-transition: all 0.1s ease-in-out;
+	-o-transition: all 0.1s ease-in-out;
+	-ms-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
+}
+
+li.nav-active a{
+	background-color: #EB6B20;
+}
+
+#info-box{
+	background-color: #EB6B20;
+	padding: 15px 0;
+	-webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow:    0px 3px 3px rgba(0, 0, 0, 0.2);
+	box-shadow:         0px 3px 3px rgba(0, 0, 0, 0.2);
+	margin-bottom: 20px;
+	text-shadow: 1px 1px #555;
+}
+
+.info-0botmarg{
+	margin-bottom: 0 !important;
+}
+
+#info-box p {
+	width: 92%;
+	color: #FFF;
+	margin: auto;
+	line-height: 1.5em;
+}
+#mobile_nav{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border-bottom: 1px solid #EB6B20;
+	margin-top:50px;
+	width:109%;
+}
+
+#mobile_nav li{
+	text-align: center;
+	margin: auto;
+	padding: auto;
+}
+
+#mobile_nav li a{
+	text-decoration: none;
+	text-transform: uppercase;
+	width: 100%;
+	padding: 10px;
+	display: block;
+	background-image: url('../docs/images/menu.png');
+	background-repeat:no-repeat;
+	background-size:contain;
+	background-position:center;
+}
+#mobile_nav li a:hover{
+	
+	background-image: url('../docs/images/menu_white.png');
+
+}
+#info-box h1, #info-box h2, #info-box h3, #info-box h4, #info-box h5{
+	color: #FFF;
+	width: 92%;
+	margin: auto;
+	padding-bottom: 10px;
+	font-size: 1.2em;
+	text-transform: uppercase;
+}
+
+#info-box p a{
+			color: #FFF !important;
+		}
+		
+#info-box p a:visited{
+			color: #FFF !important;
+		}
+
+/*********************
+				Page
+*********************/
+#page_wrap{
+	width: 92%;
+	margin: auto;
+}
+
+#complete_wrapper{
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -45px;
+	clear: both;
+}
+
+/*********************
+			Footer
+*********************/
+footer{
+	line-height: 1;
+	padding: 0;
+	margin: 0 4%;
+	height: 0px;
+	text-align:center;
+	
+}
+
+.push{
+	height: 45px;
+}
+
+
+/*********************
+			Articles
+*********************/
+
+/* Article text is only the headers */
+.article_text{
+	display: block;
+	margin: 10px;
+}
+
+.article_cont{
+	border: 1px solid #D3D3D3;
+	background: rgba(255, 255, 255, 0.7);
+}
+
+.article_cont hgroup{
+	width: 90%;
+	margin: auto;
+	
+}
+
+.article_text h2{
+	font-size: 20px;
+	margin-top: 10px;
+	margin-bottom: 0px;
+	overflow: hidden;
+}
+
+.article_text h2 a{
+	text-decoration: none;
+	color: black;
+}
+
+.article_text h3{
+	margin-top: 0;
+	font-size: 16px;
+	color: #515151;
+	margin-bottom: 0px;
+}
+
+.article_cont h3 a{
+	text-decoration: none;
+	color: #515151;
+}
+
+.article_cont h3 a:hover, .article_cont h2 a:hover{
+	color: #EB6B20;
+	text-decoration: underline;
+}
+
+.article_cont figure{
+	background-size: 100%;
+	height: 220px;
+	border-bottom: 1px solid #D3D3D3;
+}
+
+.index-seats{
+	background-color: #EB6B20;
+	position: absolute;
+	float: left;
+	text-align: center;
+	color: white;
+	padding: 10px 15px;
+	margin: 0;
+}
+
+.article_cont .timeago{
+	border-bottom: none;
+}
+
+/*********************
+	Re-usable classes
+*********************/
+
+tr, td, th{
+	padding: 2px 15px;
+}
+
+.user_avatar_profile{
+	max-width: 150px;
+	box-shadow: 1px 1px 2px #777;
+	margin: 10px 0px;
+	float: right;
+	margin-right: 20px;
+	position: relative;
+	top: -50px;
+}
+
+
+.sidebar p{
+	line-height: 1.5em;
+}
+
+.campus_img{
+	max-width: 90%;
+}
+
+
+.smalldate{
+	font-size: 0.8em;
+}
+
+.carpool_image_box{
+	padding: 15px;
+	background-color: #EB6B20;
+}
+
+.carpool_image_box img{	
+display: block;
+	margin: auto;
+	max-width: 100%;
+}
+
+.carpool_description{
+	font-style: italic;
+}
+
+.error_notice{
+	font-size: 2em;
+	font-weight: lighter;
+}
+
+#mapTest{
+	margin-top: 15px;
+	width: 90%;
+}
+
+table, tr, td, th{
+	border: 1px solid #CCC;
+	background-color: #FFF;
+}
+
+/* TEMPORARY CODE (do not touch)
+
+/* Animation is awesome */
+
+/* make keyframes that tell the start state and the end state of our object */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+ 
+.fade-in {
+    opacity:0;  /* make things invisible upon start */
+    -webkit-animation:fadeIn ease-in 0.8;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+    -moz-animation:fadeIn ease-in 0.8;
+    animation:fadeIn ease-in 0.8;
+ 
+    -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+    -moz-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+ 
+    -webkit-animation-duration:0.8s;
+    -moz-animation-duration:0.8s;
+    animation-duration:0.8s;
+}
+
+.fade-in-fast {
+    opacity:0;  /* make things invisible upon start */
+    -webkit-animation:fadeIn ease-in 0.6;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+    -moz-animation:fadeIn ease-in 0.6;
+    animation:fadeIn ease-in 0.6;
+ 
+    -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+    -moz-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+ 
+    -webkit-animation-duration:0.6s;
+    -moz-animation-duration:0.6s;
+    animation-duration:0.6s;
+}
+ 
+.fade-in.smart {
+-webkit-animation-delay: 0.2s;
+-moz-animation-delay: 0.2s;
+animation-delay: 0.2s;
+}
+ 
+.fade-in.two {
+-webkit-animation-delay: 1s;
+-moz-animation-delay:1s;
+animation-delay: 1s;
+}
+ 
+.fade-in.three {
+-webkit-animation-delay: 1.2s;
+-moz-animation-delay: 1.2s;
+animation-delay: 1.2s;
+}
+
+/* Experiment 1: Cool, flatUI like red buttons + form styles */
+
+label{
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+input[type="submit"], .button-like{
+	background-color: #EB6B20;
+	color: #FFF;
+	border-radius: 5px;
+	padding: 8px 12px;
+	border: none;
+	text-shadow: 1px 1px #555;
+}
+
+.button-like{
+	color: #FFF !important;
+	text-decoration: none;
+}
+
+input[type="submit"]:hover{
+	transition: 0.25s;
+	background-color: #000;
+}
+
+input[type="text"], input[type="email"],input[type="password"],input[type="number"],textarea{
+	padding: 10px;
+	border-radius: 1px;
+	border: 1px solid #777;
+	width: 70%;
+}
+
+textarea{
+	margin-bottom: 10px;
+}
+
+input[type="submit"]:nth-child(2){
+	margin-left: 10px;
+}
+
+/* Time markup */
+
+time{
+	border-bottom: 1px dotted #333;
+	padding-bottom: 1px;
+}
+
+.footer p{
+	font-size: 0.75em;
+}
+
+.smallfoot{
+	font-size: 1em;
+}
+
+/* =============================
+* MEDIA QUERIES
+* ============================== */
+
+/* SMARTPHONES */
+@media screen and (max-width: 480px){
+	#page_wrap{
+	width: 95%;
+	margin: auto;
+}
+	#mobile_nav{
+		margin-left:-4.5%;
+	}
+	
+	#global_nav{
+		height: auto;
+		display: none;
+		width:109%;
+		margin-left:-4.5%;
+	}
+
+	#global_nav ul{
+		margin: 0px;
+		padding: 0;
+		}
+	
+	#global_nav ul li a{
+		display: block;
+		padding: 10px 15px;
+		text-align: center;
+		font-size: 1em;
+		}
+		
+	#global_nav ul li{
+			border-bottom: 1px solid #000;
+		}
+		
+	#global_nav ul li:last-of-type{
+			border-bottom: none;
+		}
+
+	#global_nav ul li{
+		display: block;
+		width: 100%;
+		}
+		
+	#info-box{
+			border-top: 8px solid #EB6B20;
+		}
+		
+	input[type="text"], input[type="email"],input[type="password"],input[type="number"]{
+		width: 92% !important;
+		}
+		
+			
+		.carpool{
+			margin-bottom: 20px !important;
+		}
+		
+		.carpool:last-of-type{
+			margin-bottom: 0px !important;
+		}
+		
+		#mapTest{
+			width: 100%;
+		}
+		
+		#header-wrap img{
+			margin-top: 3px;
+		}
+		
+		.user_avatar_profile{
+			position: inherit;
+			display: block !important;
+			float: none;
+		}
+		
+}
+
+/* TABLETS */
+@media screen and (min-width: 481px) and (max-width: 768px){
+	#mobile_nav{
+		margin-left:-4.5%;
+	}
+	
+	#global_nav{
+		height: auto;
+		display: none;
+		width:109%;
+		margin-left:-4.5%;
+	}
+
+	#global_nav ul{
+		margin: 0px;
+		padding: 0;
+		}
+
+	#global_nav ul li a{
+		display: block;
+		padding: 10px 15px;
+		text-align: center;
+		font-size: 0.9em;
+		}
+
+	#global_nav ul li{
+		display: block;
+		width: 33.33%;
+		}
+	
+	#mobile_nav{
+		display: block !important;
+		}
+		
+	#info-box{
+			border-top: 8px solid #EB6B20;
+		}
+		
+	.carpool{
+			margin-bottom: 20px !important;
+		}
+		
+	.carpool:last-of-type{
+			margin-bottom: 0px !important;
+		}
+		
+		#mapTest{
+			width: 100%;
+		}
+		
+		table{
+			max-width: 100%;
+		}
+		
+		#header-wrap img{
+			margin-top: 3px;
+		}
+		
+}
+
+/* DESKTOPS */
+@media screen and (min-width: 769px) and (max-width: 960px){
+	#mobile_nav{
+		display: none !important;
+	}
+	#global_nav{
+		display: block !important;
+	}
+	.header-login a{
+		margin-top: -11px !important;
+	}
+}
+
+/* LARGER THAN 960px DESKTOPS */
+@media screen and (min-width: 961px){
+	#mobile_nav{
+		display: none !important;
+	}
+	#global_nav{
+		display: block !important;
+	}
+	/*.header-login a{
+		margin-top: -11px !important;
+	}*/
+}
+

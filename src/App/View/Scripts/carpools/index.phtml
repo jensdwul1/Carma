@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<?php $this->partial('head'); ?>
+	<body>
+		<div id="complete_wrapper">
+		<header id="header-wrap" class="row">
+			<a href="<?= $this->path('index') ?>"><img src="<?= $this->path('docs/images/logo-header.png'); ?>" alt="logo Carma" /></a>
+			<p class="header-login">
+				<?php if ($this->hasIdentity) { ?>
+					<a href="<?= $this->path('user') ?>" title="Go to your profile">Hi there, <?= $this->user->getGivenname() ?>!</a>
+				<?php } else { ?>
+					<a href="<?= $this->path('user') ?>" title="Log in">Log in</a>
+				<?php } ?>
+			</p>
+            <ul id="mobile_nav">
+			<li><a href="#"></a></li>
+		</ul>
+		<nav id="global_nav" class="row">
+			<ul>
+				<li class="nav-active"><a href="<?= $this->path('index') ?>">Carpools</a></li>
+				<li><a href="<?= $this->path('campuses') ?>">Campuses</a></li>
+				<li><a href="<?= $this->path('user') ?>">User</a></li>
+			</ul>
+		</nav>
+		</header>
+		
+		<div id="info-box">
+		<p>Here you can find all carpools on carma.</p>
+		</div>
+		<div id="page_wrap" class="container row">
+				<?php $count = 0; foreach ($this->carpools as $carpool) { ?>
+				<?php 
+					if($count === 0 || $count % 4 === 0)
+					{ 
+					echo '<section class="row carpool">';
+					} 
+					$count++;
+				?>
+					<article class="carpool col span_3 clr  article_cont">
+						<figure style="background: url('<?= $carpool->getCampus()->getPic() ?>')" ></figure>
+							<section class="article_text">
+							<h2><a href="<?= $this->path('carpools/carpool/id/' . $carpool->getId()) ?>">
+									<?php
+										if (strlen($carpool->getTitle()) > 19)
+										{
+											echo substr($carpool->getTitle(), 0, 17) . '...' ;
+										}
+										else
+										{
+											echo $carpool->getTitle();
+										}
+									?>
+								</a></h2>
+							<h3><a href="<?= $this->path('campuses/campus/id/' . $carpool->getCampus()->getId()) ?>"><?= $carpool->getCampus()->getName() ?></a></h3>
+							</section>
+						<br/>
+						<br/></div>
+					</article>
+				<?php if($count === 0 || $count % 4 === 0)
+					{ 
+					echo '</section>';
+					}
+				?>
+				<?php } ?>
+			
+		</div><!-- page_wrap -->
+			<div class="push"></div>
+		</div><!-- complete wrapper -->
+		<?php $this->partial('footer'); ?>
+		<script src="<?= $this->path('js/vendor/jquery.countdown.js'); ?>"></script>
+		<script src="<?= $this->path('js/mylibs/countdown.js'); ?>"></script>
+	</body>
+</html>

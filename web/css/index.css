@@ -1,0 +1,12 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700,400italic);
+
+/* IMPORT CSS RESET FUNCTIONALITY */
+@import url('normalize.css');
+
+/* IMPORT MAIN STYLESHEET */
+@import url('main.css');
+
+/* OTHER STYLESHEETS *
+/* How to: http://responsive.gs/ */
+@import url('grid/responsive-gs-12col.css');
+@import url('jquery.countdown.css');
