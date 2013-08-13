@@ -117,7 +117,7 @@ class View
      */
     public function path($url = '')
     {
-        return '/' . $url;
+        return PATH_WEBROOT . '/' . $url;
     }
 
     /**
