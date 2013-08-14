@@ -5,6 +5,9 @@ namespace App\Controller;
 use Ahs\ControllerAbstract;
 use App\Model\User;
 use App\Model\UserMapper;
+use App\Model\CarpoolMapper;
+use App\Model\PassengerMapper;
+use App\Model\CampusMapper;
 
 class UserController extends ControllerAbstract
 {
@@ -184,33 +187,7 @@ class UserController extends ControllerAbstract
 			$this->redirect(PATH_WEBROOT . '/user');
 		}
 	}
-/**
-	 * All Carpools
-	 * 
-	 * @return type
-	 */
-	public function allcarpoolsAction()
-	{
-		// is de gebruiker ingelogd?
-		if ($this->session->has('user')) {
-			// SHOW USER CENTER
-			$view = $this->getView();
-			$view->hasIdentity = true;
 
-			$user = $this->session->read('user');
-
-			// READ THE USER
-			$userMapper = new UserMapper();
-			$view->user = $userMapper->read($user);
-
-			// READ CARPOOLS
-			$carpoolMapper = new CarpoolMapper();
-			$view->carpools = $carpoolMapper->readForUser($user);
-		} else {
-			// Zo niet, omleiden naar de login-pagina
-			return $this->redirect(PATH_WEBROOT . '/user/login');
-		}
-	}
 
 	// UITLOGGEN
 	public function logoutAction()

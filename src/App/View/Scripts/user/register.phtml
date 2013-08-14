@@ -3,23 +3,7 @@
 	<?php $this->partial('head'); ?>
   <body>
 		<div id="complete_wrapper">
-			<header id="header-wrap" class="row">
-				<a href="<?= $this->path('index') ?>"><img src="<?= $this->path('docs/images/logo-header.png'); ?>" alt="logo Carma" /></a>
-				<p class="header-login">
-					<a href="<?= $this->path('user') ?>" title="Log in">Log in</a>
-				</p>
-                <ul id="mobile_nav">
-				<li><a href="#"></a></li>
-			</ul>
-			<nav id="global_nav" class="row">
-				<ul>
-					<li><a href="<?= $this->path('index') ?>">Home</a></li>
-					<li><a href="<?= $this->path('carpools') ?>">Carpools</a></li>
-					<li><a href="<?= $this->path('campuses') ?>">Campuses</a></li>
-					<li class="nav-active"><a href="<?= $this->path('user') ?>">User</a></li>
-				</ul>
-			</nav>
-			</header>
+			<?php $this->partial('header'); ?>
 			
 			<div id="info-box">
 				<h1>Register Now</h1>

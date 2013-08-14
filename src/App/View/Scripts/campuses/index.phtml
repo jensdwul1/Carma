@@ -4,26 +4,7 @@
 	<?php $this->partial('head'); ?>
 	<body>
 		<div id="complete_wrapper">
-			<header id="header-wrap" class="row">
-				<a href="<?= $this->path('index') ?>"><img src="<?= $this->path('docs/images/logo-header.png'); ?>" alt="logo Carma" /></a>
-				<p class="header-login">
-					<?php if ($this->hasIdentity) { ?>
-						<a href="<?= $this->path('user') ?>" title="Go to your profile">Hi there, <?= $this->user->getGivenname() ?>!</a>
-					<?php } else { ?>
-						<a href="<?= $this->path('user') ?>" title="Log in">Log in</a>
-					<?php } ?>
-				</p>
-            <ul id="mobile_nav">
-				<li><a href="#"></a></li>
-			</ul>
-            <nav id="global_nav" class="row">
-				<ul>
-					<li><a href="<?= $this->path('index') ?>">Carpools</a></li>
-					<li class="nav-active"><a href="<?= $this->path('campuses') ?>">Campuses</a></li>
-					<li><a href="<?= $this->path('user') ?>">User</a></li>
-				</ul>
-			</nav>
-			</header>
+			<?php $this->partial('header'); ?>
 			
 			
 			<div id="info-box">

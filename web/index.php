@@ -5,8 +5,10 @@
 define('PATH_VENDOR' , realpath(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor') . DIRECTORY_SEPARATOR);
 define('PATH_SOURCE' , realpath(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'src'   ) . DIRECTORY_SEPARATOR);
 define('PATH_CONFIG' , PATH_SOURCE . 'config' . DIRECTORY_SEPARATOR);
-define('PATH_WEBROOT', dirname($_SERVER['SCRIPT_NAME']) );   // Pad vanaf de map waarin het project staat.
-
+/* define('PATH_WEBROOT', substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], basename($_SERVER['PHP_SELF'])))); */
+$tmp1 = substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], basename($_SERVER['PHP_SELF'])));
+if(substr($tmp1, -1, 1) == "/")$tmp1 = substr($tmp1, 0, strlen($tmp1)-1);
+define('PATH_WEBROOT', $tmp1);   // Pad vanaf de map waarin het project staat.
 /**
  * Eenvoudige Autoloader om klassen automatisch in te laden.
  *
