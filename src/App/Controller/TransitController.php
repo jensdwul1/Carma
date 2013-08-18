@@ -18,26 +18,20 @@ class TransitController extends ControllerAbstract
 	 */
 	public function indexAction()
 	{
-		// is de gebruiker ingelogd?
-		if ($this->session->has('user')) {
-			// SHOW USER CENTER
-			$view = $this->getView();
-			$view->hasIdentity = true;
+		$view = $this->getView();
 
+		// USER CHECK
+		$view->hasIdentity = $this->session->has('user');
+		if ($view->hasIdentity) {
 			$user = $this->session->read('user');
 
-			// READ THE USER
 			$userMapper = new UserMapper();
 			$view->user = $userMapper->read($user);
+		}
 
-			
-			// READ CAMPUSES 
-			$campusMapper = new CampusMapper();
-			$view->campuses = $campusMapper->readAll();
-			} else {
-				// If not, Redirect
-				return $this->redirect(PATH_WEBROOT . '/user/login');
-			}
+		// CAMPUSES OPHALEN UIT DB
+		$campusMapper = new CampusMapper();
+		$view->campuses = $campusMapper->readAll();
 	}
 }
 ?>

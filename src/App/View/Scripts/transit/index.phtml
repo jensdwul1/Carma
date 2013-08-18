@@ -17,12 +17,12 @@
 			<?php $this->partial('header'); ?>
 		
 			<div id="info-box">
-				<h1>Hello there, <?= $this->user->getGivenname() ?>.</h1>
-				<p>You have reached your profile page. </p>
+            <h1>So you want to use public transit ?</h1>
+				<p>Select a campus from the list and we'll give you directions to get to your campus from your current location.</p>
 			</div>
 			<div id="page_wrap" class="container row">
 				<section id="content_wrap" class="row">
-					<article class="col span_5 clr" id="profile">
+					<article class="span_12 clr">
 						<h2>Campuses</h2>
                         <div id="control">
 						<select id="campus" name="campus" onchange="calcRouteTransit()">
@@ -32,12 +32,11 @@
                         </select>
                         </div>
 						<br/>
-					</article>
-                    <div id="mapTest" class="right clearfix"></div>
-                    <article class="col span_4 clr" id="profile">
-                    <div id="directions-panel"></div>
                     </article>
-						
+                    <article class="col span_8 clr"><div id="mapTest" class="right clearfix"></div></article>
+                    <article class="col span_3 clr">
+                    <div id="directionsPanel"></div>
+					</article>
 					</section><!-- content_wrap -->
 			</div><!-- page_wrap -->
 			<div class="push"></div>

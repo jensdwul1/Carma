@@ -2,7 +2,7 @@
 	   Temporary
 *********************/
 #mapTest{
-	height: 300px;
+	height: 400px;
 	width: 300px;
 }
 
@@ -293,7 +293,7 @@ footer{
 	Re-usable classes
 *********************/
 
-tr, td, th{
+tr, td, th, .adp-step, .adp-substep{
 	padding: 2px 15px;
 }
 
@@ -343,9 +343,14 @@ display: block;
 
 #mapTest{
 	margin-top: 15px;
-	width: 90%;
+	width: 100%;
 }
-
+.adp-warnbox{
+	display:none;
+}
+.adp-directions{
+	width:100%;
+}
 table, tr, td, th{
 	border: 1px solid #CCC;
 	background-color: #FFF;
@@ -571,7 +576,7 @@ time{
 
 	#global_nav ul li{
 		display: block;
-		width: 33.33%;
+		width: 25%;
 		}
 	
 	#mobile_nav{

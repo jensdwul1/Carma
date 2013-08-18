@@ -1,47 +1,30 @@
+
 //VARIABLES
 var zoom = 12;
-var map;
-var directionsService = new google.maps.DirectionsService();
 var directionsDisplay;
-
-
-//GOOGLE MAPS
-function initialize() {  
-  var mapOptions = {
+var directionsService = new google.maps.DirectionsService();
+var map;
+ var mapOptions = {
     zoom: zoom,
-    center: new google.maps.LatLng(latCampus,lngCampus),
+    center: new google.maps.LatLng(51.063407, 3.729858),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   }
+//GOOGLE MAPS
+function initialize() {  
+ 
 
   var map = new google.maps.Map(document.getElementById("mapTest"),mapOptions);
 
   	directionsDisplay = new google.maps.DirectionsRenderer();
    	directionsDisplay.setMap(map);
-  	jQuery.fn.exists = function(){return this.length>0;}
-	
-	if ($('#campus').exists()) {
-		calcRouteTransit();
-		var control = document.getElementById('control');
-		control.style.display = 'block';
-		map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+    directionsDisplay.setPanel(document.getElementById("directionsPanel"));
+	if ($("#campus").length > 0){
+	  
 	}
 	else{
-		calcRouteCarpool();
+			calcRouteCarpool();
 		}
-	// Try HTML5 geolocation
-	  if(navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(function(position) {
-		  var pos = new google.maps.LatLng(position.coords.latitude,
-										   position.coords.longitude);
-		  map.setCenter(posTransit);
-		}, function() {
-		  handleNoGeolocation(true);
-		});
-	  } else {
-		// Browser doesn't support Geolocation
-		handleNoGeolocation(false);
-	  }
-}
+	}
 function calcRouteCarpool() {
   var request = {
       origin:new google.maps.LatLng(latDepart,lngDepart),
@@ -57,32 +40,46 @@ function calcRouteCarpool() {
 }
 function calcRouteTransit() {
 	
-  var end = document.getElementById('campus').value;
-  var request = {
-      origin:posTransit,
-      destination:end,
-      travelMode: google.maps.DirectionsTravelMode.TRANSIT
-  };
-  directionsService.route(request, function(response, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-	  console.log(response);
-    }
-  });
-}
-function handleNoGeolocation(errorFlag) {
-  if (errorFlag) {
-    var content = 'Error: The Geolocation service failed.';
-  } else {
-    var content = 'Error: Your browser doesn\'t support geolocation.';
-  }
+	if (navigator.geolocation) {
+	navigator.geolocation.getCurrentPosition(success, error);
+	} else {
+	error('not supported');
+	}
+	function success(position) {
+		 
+        map = new google.maps.Map(document.getElementById('mapTest'), mapOptions);
+        directionsDisplay.setMap(map);
 
-  var options = {
-    map: map,
-    position: new google.maps.LatLng(51.063407, 3.729858),
-    content: content
-  };
+        var start = position.coords.latitude + ',' + position.coords.longitude;;
+        var end =  document.getElementById('campus').value;
+        var mode = google.maps.DirectionsTravelMode.TRANSIT;
 
-  var infowindow = new google.maps.InfoWindow(options);
-  map.setCenter(options.position);
+        var request = {
+            origin:start,
+            destination:end,
+            travelMode: mode
+        };
+        
+        directionsService.route(request, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+          }
+        });
+
+      }
+
+	  function error(msg) {
+		var s = document.querySelector('#status');
+		s.innerHTML = typeof msg == 'string' ? msg : "failed";
+		s.className = 'fail';
+	
+		console.log(arguments);
+	   }
+
 }
+google.maps.event.addDomListener(window, 'load', initialize);
+
+$(document).ready(function() {  
+    $('#campus').change();
+});      
+ 

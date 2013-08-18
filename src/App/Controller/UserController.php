@@ -19,6 +19,7 @@ class UserController extends ControllerAbstract
 	 */
 	public function indexAction()
 	{
+		
 		// is de gebruiker ingelogd?
 		if ($this->session->has('user')) {
 			// SHOW USER CENTER
