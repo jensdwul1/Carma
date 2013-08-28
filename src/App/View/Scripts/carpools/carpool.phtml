@@ -59,17 +59,15 @@
 				<form method="post" action="<?= $this->path('carpools/carpool/id/' . $this->carpool->getId()) ?>">
 						<?php 
 						$campus_id = $this->carpool->getCampus()->getId();
-						if(isset( $_POST['here'] ))
-							{ echo "I was here ";}
+						if(isset( $_POST['Apply'] ))
+							{ echo "You have applied for this Carpool";}
+						else if(isset( $_POST['approved']) )
+							{ echo "You have been approved for this carpool. You can always leave this carpool by using the leave button. ";
+							echo '<input name="leave" type="submit" value="Leave">';}
 						else if (!$this->hasIdentity)
-							{ echo "Log in to check in <br />"; }
-						else { echo '<input name="here" type="submit" value="I\'m here">'; }
+							{ echo '<p class="FakeBtn">Log in to apply for the Carpool </p> <br />'; }
+						else { echo '<input name="apply" type="submit" value="Apply">'; }
 						
-						if(isset( $_POST['going'] ))
-							{ echo "I'm on my way ";}
-						else if (!$this->hasIdentity)
-							{ echo "Log in to go on a quest <br />"; }
-						else { echo '<input name="going" type="submit" value="I\'m going">'; }
 						?>
 					</form>
 				</article>
@@ -78,6 +76,7 @@
 		</div><!-- page_wrap -->
 		<div class="push"></div>
 		</div>
-		<?php $this->partial('footer'); ?>
+		<?php $this->partial('footer'); ?>        
+		<script src="<?= $this->path('js/mylibs/drawRoute.js') ?>" type="text/javascript"></script>
 	</body>
 </html>

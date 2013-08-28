@@ -153,7 +153,7 @@ clASs CarpoolMapper extends ModelMapperAbstract
 			$stmt->bindValue(':user', $carpool->getUser()->getId());
 			
 			if ($stmt->execute()) {
-				$carpool->setId($this->db->lAStInsertId());
+				$carpool->setId($this->db->lastInsertId());
 				return $carpool;
 			}
 			throw new \Exception(sprintf(Error::MESSAGE_CREATE, get_class($carpool)));
@@ -265,10 +265,10 @@ clASs CarpoolMapper extends ModelMapperAbstract
 	 * @return \App\Model\Carpool
 	 * @throws \Exception
 	 */
+	
 	public function readForUser(User $user)
 	{
-		$sql = 'SELECT ' .
-						'`carp_id` AS `id`, ' .
+		$sql = '`carp_id` AS `id`, ' .
 						'`carp_title` AS `title`, ' .
 						'`carp_description` AS `description`, ' .
 						'`carp_departure` AS `departure`, ' .
@@ -279,7 +279,7 @@ clASs CarpoolMapper extends ModelMapperAbstract
 						'`usr_id` AS `user` ' .
 						'FROM `carpools` ' .
 						'WHERE `usr_id` = :usr_id'.
-						'ORDER BY `carp_id` DESC ' .
+						'ORDER BY `carp_id` ASC ' .
 						'LIMIT 10';
 
 		$stmt = $this->db->prepare($sql);

@@ -13,6 +13,13 @@ class Passenger extends ModelAbstract
 	 * @var int
 	 */
 	protected $id;
+	
+	/**
+	 * Passenger State
+	 * 
+	 * @var boolean
+	 */
+	protected $state;
 
 	/**
 	 * Passenger Carpool
@@ -40,7 +47,9 @@ class Passenger extends ModelAbstract
 				case 'id':
 					$this->setId($value);
 					break;
-				
+				case 'state':
+					$this->setState($value);
+					break;
 				case 'carpool':
 					$carpool = new Carpool(['id' => $value]);
 					$carpoolmapper = new CarpoolMapper();
@@ -78,11 +87,19 @@ class Passenger extends ModelAbstract
 	}
 
 	/**
-	 * Get Passenger Date
+	 * Get Passenger State
 	 * 
 	 * @return string
 	 */
+	public function getState()
+	{
+		return $this->state;
+	}
 	
+	public function setState($state)
+	{
+		$this->state = $state;
+	}
 	/**
 	 * Get Passenger Carpool
 	 * 

@@ -19,26 +19,28 @@ class UserController extends ControllerAbstract
 	 */
 	public function indexAction()
 	{
-		
-		// is de gebruiker ingelogd?
-		if ($this->session->has('user')) {
-			// SHOW USER CENTER
-			$view = $this->getView();
-			$view->hasIdentity = true;
+		$view = $this->getView();
 
+		// USER CHECK
+		$view->hasIdentity = $this->session->has('user');
+		if ($view->hasIdentity) {
 			$user = $this->session->read('user');
-
-			// READ THE USER
+			
 			$userMapper = new UserMapper();
 			$view->user = $userMapper->read($user);
-
-			// READ CARPOOLS
-			$carpoolMapper = new CarpoolMapper();
-			$view->carpools = $carpoolMapper->readForUser($user);
-		} else {
-			// Zo niet, omleiden naar de login-pagina
+		}
+		else {
+			// If not, redirect to login
 			return $this->redirect(PATH_WEBROOT . '/user/login');
 		}
+		// RETRIEVE ALL CARPOOLS FOR USER
+		$carpoolMapper = new CarpoolMapper();
+		$view->carpools = $carpoolMapper->readAll($user);
+
+		//RETRIEVE CAMPUSES
+		$campusMapper = new CampusMapper();
+		$view->campuses = $campusMapper->readAll();
+	
 	}
 
 	/**

@@ -29,10 +29,9 @@
 						<br/>
                         <a class="button-like" href="<?= $this->path('user/logout') ?>">Log out</a>
 					</article>
-                        <article class="col span_4 clr" id="profile">
+                   <article class="col span_4 clr" id="profile">
                    <h1>Your Carpools</h1>
-                   
-					<?php if (empty($this->carpools)) { ?>
+                   	<?php if (empty($this->carpools)) { ?>
 						<p>You haven't made any carpools!</p>
 					<?php } else {
 						?>
@@ -65,8 +64,48 @@
 					<?php }
 					?>
 					<p><a href="<?= $this->path('carpools/newcarpool') ?>">Add a new carpool</a></p>
+                    <br />
+                    <h1>Your Passengers</h1>
+                   	<?php if (empty($this->passengers)) { ?>
+						<p>You don't have any passengers!</p>
+					<?php } else {
+						?>
+						<table border='1'>
+							<thead>
+							<th>Name</th>
+							<th>Carpool</th>
+							<th></th>
+							<th></th>
+							</thead>
+							<?php foreach ($this->passengers as $passenger) {
+								?>
+								<tr>
+									<td>
+										<?= $this->path('carpools/carpool/id/' . $carpool->getId()) ?>"><?= $carpool->getTitle() ?>
+									</td>
+									<td><?= $passenger->getUser()->getGivenname(); $passenger->getUser()->getFamilyname();?></td>
+									<td><a href="<?= $this->path('campuses/campus/id/' . $carpool->getCampus()->getId()) ?>"><?= $carpool->getCampus()->getName(); ?></a></td><td><?= $passenger->getSeats(); ?></td>
+									<td>
+										<form id="frmAcceptPassenger" method="post" action="<?= $this->path('carpools/editcarpool') ?>">
+											<input type="hidden" name="carp_id" value="<?= $carpool->getId() ?>">
+											<input name="btnAcceptPassenger" id="btnAcceptPassenger" type="submit" value="Accept">
+										</form>
+									</td>
+                                    <td>
+										<form id="frmDenyPassenger" method="post" action="<?= $this->path('carpools/editcarpool') ?>">
+											<input type="hidden" name="carp_id" value="<?= $carpool->getId() ?>">
+											<input name="btnDenyPassenger" id="btnDenyPassenger" type="submit" value="Deny">
+										</form>
+									</td>
+								</tr>
+							<?php }
+							?>
+						</table>
+					<?php }
+					?>
+					
                      </article>
-						
+					
 					</section><!-- content_wrap -->
 			</div><!-- page_wrap -->
 			<div class="push"></div>

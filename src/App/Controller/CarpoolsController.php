@@ -80,28 +80,27 @@ class CarpoolsController extends ControllerAbstract
 			// LEES DE CARPOOL ADHV DE ID
 			$view->carpool = $carpoolMapper->readID($id);
 		
-		/*// PASSENGER AANMAKEN
+		// PASSENGER AANMAKEN
 			$passengerMapper = new PassengerMapper();
 			if ($view->hasIdentity) {
-				$view->passengers = $passengerMapper->readForUser($passenger);
+				$view->passengers = $passengerMapper->readForCarpool($passenger);
 			}
 
-			if( isset( $_POST['here'] ) ) {
+			if( isset( $_POST['applied'] ) ) {
 				// CHECK IF USER LOGGED IN
 				if ($view->hasIdentity)
 				{
 					// CHECK IF USER NOT ALREADY A PASSENGER
-//					if (!empty($view->checkins))
-//					{
+					if (!empty($view->passengers))
+					{
 						$passenger = new \App\Model\Passenger();
 						$passenger->setCampus($view->carpool->getCampus());
 						$passenger->setUser($user);
 						$passengerMapper->create($passenger);
-//					}
+					}
 				}
-				$seats = $view->carpool->getSeats();
 				
-			}*/
+			}
 		}
 		catch (\Exception $ex) {
 				$ex->getMessage();

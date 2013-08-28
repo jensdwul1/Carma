@@ -19,6 +19,7 @@ class PassengerMapper extends ModelMapperAbstract
 	{
 		$sql = 'SELECT ' .
 						'`pass_id` as `id`, ' .
+						'`pass_accepted` as `state`, ' .
 						'`carp_id` as `carpoool`, ' .
 						'`usr_id` as `user` ' .
 						'FROM `passengers` ' .
@@ -49,10 +50,11 @@ class PassengerMapper extends ModelMapperAbstract
 	 */
 	public function create(Passenger $passenger)
 	{
-		$sql = 'INSERT INTO `passengers` (`carp_id`, `usr_id`) VALUES (:carp_id, :usr_id)';
+		$sql = 'INSERT INTO `passengers` (`state`, `carp_id`, `usr_id`) VALUES (:state, :carp_id, :usr_id)';
 
 		$stmt = $this->db->prepare($sql);
 		if ($stmt) {
+			$stmt->bindValue(':state', $passenger->getState());
 			$stmt->bindValue(':carp_id', $passenger->getCarpool()->getId());
 			$stmt->bindValue(':usr_id', $passenger->getUser()->getId());
 			
@@ -94,6 +96,7 @@ class PassengerMapper extends ModelMapperAbstract
 	{
 		$sql = 'SELECT ' .
 						'`pass_id` as `id`, ' .
+						'`pass_accepted` as `state`, ' .
 						'`carp_id` as `carpoool`, ' .
 						'`usr_id` as `user` ' .
 						'FROM `passengers` ' .
@@ -128,6 +131,7 @@ class PassengerMapper extends ModelMapperAbstract
 	{
 		$sql = 'SELECT ' .
 						'`pass_id` as `id`, ' .
+						'`pass_accepted` as `state`, ' .
 						'`carp_id` as `carpoool`, ' .
 						'`usr_id` as `user` ' .
 						'FROM `passengers` ' .
@@ -163,6 +167,7 @@ class PassengerMapper extends ModelMapperAbstract
 	{
 		$sql = 'SELECT ' .
 						'`pass_id` as `id`, ' .
+						'`pass_accepted` as `state`, ' .
 						'`carp_id` as `carpoool`, ' .
 						'`usr_id` as `user` ' .
 						'FROM `passengers` ' .
