@@ -155,7 +155,44 @@ class PassengerMapper extends ModelMapperAbstract
 		}
 		throw new \Exception(Error::MESSAGE_UNEXPECTED);
 	}
+	
+	/**
+	 * Read for user
+	 * 
+	 * @param \App\Model\User $user
+	 * @return \App\Model\Passenger
+	 * @throws \Exception
+	 */
+	public function readForCarpool(Passenger $passenger)
+	{
+		$sql = 'SELECT ' .
+						'`pass_id` as `id`, ' .
+						'`pass_accepted` as `state`, ' .
+						'`carp_id` as `carpoool`, ' .
+						'`usr_id` as `user` ' .
+						'FROM `passengers` ' .
+						'WHERE `carp_id` = :carp_id ' .
+						'ORDER BY `pass_id` DESC ' .
+						'LIMIT 10';
 
+		$stmt = $this->db->prepare($sql);
+
+		if ($stmt) {
+			$stmt->bindValue(':carp_id', $carpool->getId());
+
+			$passengers = [];
+			if ($stmt->execute()) {
+				while ($row = $stmt->fetch()) {
+					$passengers[] = new Passenger($row);
+				}
+				return $passengers;
+			}
+			throw new \Exception(sprintf(Error::MESSAGE_READ, get_class($user)));
+		}
+		throw new \Exception(Error::MESSAGE_UNEXPECTED);
+	}
+
+	
 	/**
 	 * Read Last Five Passengers for User
 	 * 

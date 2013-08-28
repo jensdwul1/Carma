@@ -73,7 +73,7 @@ class CarpoolsController extends ControllerAbstract
 					$this->redirect(PATH_WEBROOT . '/error');
 				}
 			} else {
-				// omleiden naar index als id niet bestaat
+				// Redirect index als id niet bestaat
 				$this->redirect(PATH_WEBROOT . '/carpools');
 			}
 
@@ -82,16 +82,26 @@ class CarpoolsController extends ControllerAbstract
 		
 		// PASSENGER AANMAKEN
 			$passengerMapper = new PassengerMapper();
-			if ($view->hasIdentity) {
-				$view->passengers = $passengerMapper->readForCarpool($passenger);
-			}
 
-			if( isset( $_POST['applied'] ) ) {
+			if( isset( $_POST['apply'] ) ) {
 				// CHECK IF USER LOGGED IN
 				if ($view->hasIdentity)
 				{
 					// CHECK IF USER NOT ALREADY A PASSENGER
-					if (!empty($view->passengers))
+					
+						$passenger = new \App\Model\Passenger();
+						$passenger->setCarpool($view->carpool = $carpoolMapper->readID($id));
+						$passenger->setUser($user);
+						$passengerMapper->create($passenger);
+				}
+				
+			}
+			if( isset( $_POST['leave'] ) ) {
+				// CHECK IF USER LOGGED IN
+				if ($view->hasIdentity)
+				{
+					// CHECK IF USER NOT ALREADY A PASSENGER
+					if (!empty($view->passenger))
 					{
 						$passenger = new \App\Model\Passenger();
 						$passenger->setCampus($view->carpool->getCampus());
@@ -131,7 +141,7 @@ class CarpoolsController extends ControllerAbstract
 		}
 		$campusMapper = new CampusMapper();
 		$view->campuses = $campusMapper->readAll();
-		// ANDERS
+		// ELSE
 		if (isset($_POST) && isset($_POST['btnNewCarpool'])) {
 			$carpool = new Carpool($_POST);
 
@@ -140,9 +150,11 @@ class CarpoolsController extends ControllerAbstract
 				$carpoolMapper->create($carpool);
                             }
 			catch (\ErrorException $e) {
+				
 				die($e->getMessage());
 			}
 			catch (\Exception $e) {
+				
 				die($e->getMessage());
 			}
 

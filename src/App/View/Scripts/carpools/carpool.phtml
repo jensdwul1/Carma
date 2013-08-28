@@ -57,9 +57,8 @@
 			</article>
 			<article class="col span_6 clr">
 				<form method="post" action="<?= $this->path('carpools/carpool/id/' . $this->carpool->getId()) ?>">
-						<?php 
-						$campus_id = $this->carpool->getCampus()->getId();
-						if(isset( $_POST['Apply'] ))
+						<?php $campus_id = $this->carpool->getCampus()->getId();
+						if(isset( $_POST['apply'] ))
 							{ echo "You have applied for this Carpool";}
 						else if(isset( $_POST['approved']) )
 							{ echo "You have been approved for this carpool. You can always leave this carpool by using the leave button. ";
