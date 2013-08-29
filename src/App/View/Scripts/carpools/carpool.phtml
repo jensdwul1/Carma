@@ -62,10 +62,13 @@
 							{ echo "You have applied for this Carpool";}
 						else if(isset( $_POST['approved']) )
 							{ echo "You have been approved for this carpool. You can always leave this carpool by using the leave button. ";
-							echo '<input name="leave" type="submit" value="Leave">';}
+							echo '<form id="frmDeletePassenger" method="post" action="<?= $this->path("user/deletecheckin") ?>">
+												<input type="hidden" name="chk_id" value="<?= $checkin->getId() ?>">
+												<input name="btnDeleteCheckin" id="btnDeleteCheckin" type="submit" value="Delete">
+											</form>';}
 						else if (!$this->hasIdentity)
 							{ echo '<p class="FakeBtn">Log in to apply for the Carpool </p> <br />'; }
-						else { echo '<input name="apply" type="submit" value="Apply">'; }
+						else { echo '<br /><input name="apply" type="submit" value="Apply">'; }
 						
 						?>
 					</form>

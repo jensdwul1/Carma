@@ -6,6 +6,7 @@ use Ahs\ControllerAbstract;
 use App\Model\User;
 use App\Model\UserMapper;
 use App\Model\CarpoolMapper;
+use App\Model\Passenger;
 use App\Model\PassengerMapper;
 use App\Model\CampusMapper;
 

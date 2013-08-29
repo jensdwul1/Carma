@@ -10,7 +10,7 @@
 		<div id="page_wrap" class="container row">
 			<section id="content_wrap" class="row">
 				<article class="col span_8 clr">
-					<form id="frmUpdateCarpool" method="post" action="<?= $this->path('carpool/updatecarpool') ?>">
+					<form id="frmUpdateCarpool" method="post" action="<?= $this->path('carpool/updatecarpools') ?>">
 						<input id="id" name="id" type="hidden" value="<?= $this->carpool->getId() ?>">
 
 						<label for="title">Title:</label>
@@ -39,7 +39,8 @@
 						</select>
 
 						<label for="user">Owner:</label>
-                        <label id="user" name="user"><?= $this->carpool->getUser()->getGivenname() ?> <?= $this->carpool->getUser()->getFamilyname() ?></label>
+                        <label id="userLbl" name="userLbl"><?= $this->user->getGivenname() ?> <?= $this->user->getFamilyname() ?></label>
+            			<input id="user" name="user" type="hidden" value="<?= $this->user->getId() ?>">
                         
 						<input id="btnUpdateCarpool" name="btnUpdateCarpool" type="submit" value="Update carpool">
 					</form>

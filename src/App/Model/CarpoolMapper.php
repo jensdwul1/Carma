@@ -267,36 +267,38 @@ clASs CarpoolMapper extends ModelMapperAbstract
 	 */
 	
 	public function readForUser(User $user)
-	{
-		$sql = '`carp_id` AS `id`, ' .
-						'`carp_title` AS `title`, ' .
-						'`carp_description` AS `description`, ' .
-						'`carp_departure` AS `departure`, ' .
-						'`carp_lat` AS `lat`, ' .
-						'`carp_long` AS `lng`, ' .
-						'`carp_seats` AS `seats`, ' .
-						'`camp_id` AS `campus`, ' .
-						'`usr_id` AS `user` ' .
-						'FROM `carpools` ' .
-						'WHERE `usr_id` = :usr_id'.
-						'ORDER BY `carp_id` ASC ' .
-						'LIMIT 10';
-
-		$stmt = $this->db->prepare($sql);
-
-		if ($stmt) {
-			$stmt->bindValue(':usr_id', $user->getId());
-
-			$carpools = [];
-			if ($stmt->execute()) {
-				while ($row = $stmt->fetch()) {
-					$carpools[] = new Carpool($row);
-				}
-				return $carpools;
-			}
-			throw new \Exception(sprintf(Error::MESSAGE_READ, get_class($user)));
-		}
-		throw new \Exception(Error::MESSAGE_UNEXPECTED);
+        {
+                $sql = 'SELECT `carp_id` AS `id`, ' .
+                                                '`carp_title` AS `title`, ' .
+                                                '`carp_description` AS `description`, ' .
+                                                '`carp_departure` AS `departure`, ' .
+                                                '`carp_lat` AS `lat`, ' .
+                                                '`carp_long` AS `lng`, ' .
+                                                '`carp_seats` AS `seats`, ' .
+                                                '`camp_id` AS `campus`, ' .
+                                                '`usr_id` AS `user` ' .
+                                                'FROM `carpools` ' .
+                                                'WHERE `usr_id` = :usr_id '.
+                                                'ORDER BY `carp_id` ASC ' .
+                                                'LIMIT 10';
+ 
+                $stmt = $this->db->prepare($sql);
+ 
+                if ($stmt) {
+                        $stmt->bindValue(':usr_id', $user->getId());
+ 
+                        $carpools = [];
+                       
+                        if ($stmt->execute()){
+                                while ($row = $stmt->fetch()) {
+                                       
+                                        $carpools[] = new Carpool($row);
+                                }
+                                return $carpools;
+                        }
+                        throw new \Exception(sprintf(Error::MESSAGE_READ, get_class($user)));
+                }
+                throw new \Exception(Error::MESSAGE_UNEXPECTED);
 	}
 
 	
@@ -305,34 +307,34 @@ clASs CarpoolMapper extends ModelMapperAbstract
 	 * 
 	 * @param \App\Model\Carpool $carpool
 	 */
-	public function update(Carpool $carpool)
-	{
-		$sql = 'UPDATE `carpools` ' .
-						'`carp_id` AS `id`, ' .
-						'`carp_title` AS `title`, ' .
-						'`carp_description` AS `description`, ' .
-						'`carp_departure` AS `departure`, ' .
-						'`carp_lat` AS `lat`, ' .
-						'`carp_long` AS `lng`, ' .
-						'`carp_seats` AS `seats`, ' .
-						'`camp_id` AS `campus`, ' .
-						'`usr_id` AS `user` ' .
-						'WHERE `carp_id` = :id';
-
-		$stmt = $this->db->prepare($sql);
-
-		if ($stmt) {
-			$stmt->bindValue(':title', $carpool->getTitle());
-			$stmt->bindValue(':description', $carpool->getDescription());
-			$stmt->bindValue(':departure', $carpool->getDeparture());
-			$stmt->bindValue(':lat', $carpool->getLat());
-			$stmt->bindValue(':lng', $carpool->getLng());
-			$stmt->bindValue(':seats', $carpool->getSeats());
-			$stmt->bindValue(':campus', $carpool->getCampus()->getId());
-			$stmt->bindValue(':user', $carpool->getUser()->getId());
-			$stmt->bindValue(':id', $carpool->getId());
-			$stmt->execute();
-		}
-	}
+	 public function update(Carpool $carpool)
+        {
+                $sql = 'UPDATE `carpools` SET ' .
+                                                '`carp_title` = :title, ' .
+                                                '`carp_description` = :description , ' .
+                                                '`carp_departure` = :departure , ' .
+                                                '`carp_lat` = :lat , ' .
+                                                '`carp_long` = :lng , ' .
+                                                '`carp_seats` = :seats , ' .
+                                                '`camp_id` = :campus , ' .
+                                                '`usr_id` = :user , ' .
+                                                '`carp_id` = :id ' .
+                                                'WHERE `carp_id` = :id ';
+ 
+                $stmt = $this->db->prepare($sql);
+ 
+                if ($stmt) {
+                        $stmt->bindValue(':title', $carpool->getTitle());
+                        $stmt->bindValue(':description', $carpool->getDescription());
+                        $stmt->bindValue(':departure', $carpool->getDeparture());
+                        $stmt->bindValue(':lat', $carpool->getLat());
+                        $stmt->bindValue(':lng', $carpool->getLng());
+                        $stmt->bindValue(':seats', $carpool->getSeats());
+                        $stmt->bindValue(':campus', $carpool->getCampus()->getId());
+                        $stmt->bindValue(':user', $carpool->getUser()->getId());
+                        $stmt->bindValue(':id', $carpool->getId());
+                        $stmt->execute();
+                }
+        }
 
 }

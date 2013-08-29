@@ -37,8 +37,8 @@
 			</select>
 			
             <label for="user">User:</label>
-			<label id="user" name="user"><?= $this->user->getGivenname() ?> <?= $this->user->getFamilyname() ?></label>
-            
+			<label id="userLbl" name="userLbl"><?= $this->user->getGivenname() ?> <?= $this->user->getFamilyname() ?></label>
+            <input id="user" name="user" type="hidden" value="<?= $this->user->getId() ?>">
 			<input id="btnNewCarpool" name="btnNewCarpool" type="submit" value="Add carpool">
 		</form>
 		</article>

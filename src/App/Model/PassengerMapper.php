@@ -135,27 +135,29 @@ class PassengerMapper extends ModelMapperAbstract
 						'`carp_id` as `carpoool`, ' .
 						'`usr_id` as `user` ' .
 						'FROM `passengers` ' .
-						'WHERE `usr_id` = :usr_id ' .
-						'ORDER BY `pass_id` DESC ' .
+						'WHERE `carp_id` = :carp_id ' .
+						'ORDER BY `pass_id` ASC ' .
 						'LIMIT 10';
 
 		$stmt = $this->db->prepare($sql);
-
-		if ($stmt) {
-			$stmt->bindValue(':usr_id', $user->getId());
-
-			$passengers = [];
-			if ($stmt->execute()) {
-				while ($row = $stmt->fetch()) {
-					$passengers[] = new Passenger($row);
-				}
-				return $passengers;
-			}
-			throw new \Exception(sprintf(Error::MESSAGE_READ, get_class($user)));
-		}
-		throw new \Exception(Error::MESSAGE_UNEXPECTED);
+ 
+                if ($stmt) {
+                        $stmt->bindValue(':carp_id', $carpool->getId());
+ 
+                        $passengers = [];
+                       
+                        if ($stmt->execute()){
+                                while ($row = $stmt->fetch()) {
+                                       
+                                        $passengers[] = new Passenger($row);
+                                }
+                                return $passengers;
+                        }
+                        throw new \Exception(sprintf(Error::MESSAGE_READ, get_class($carpool)));
+                }
+                throw new \Exception(Error::MESSAGE_UNEXPECTED);
 	}
-	
+
 	/**
 	 * Read for user
 	 * 
